@@ -1,0 +1,54 @@
+{
+  "collectionName": "components_doctor_profile_details_sections",
+  "info": {
+    "displayName": "Profile Details"
+  },
+  "attributes": {
+    "designation": { "type": "string" },
+    "specialization": { "type": "string" },
+    "medicalRegistrationNumber": { "type": "string" },
+    "yearsOfExperience": { "type": "integer" },
+    "onlineConsultationFee": { "type": "decimal" },
+    "biography": { "type": "richtext", "required": true },
+    "languages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    },
+    "certifications": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    },
+    "hospitalAffiliations": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    },
+    "expertiseCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "doctor.expertise-card"
+    },
+    "qualifications": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    },
+    "specialisations": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    },
+    "experience": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    },
+    "awards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    }
+  }
+}

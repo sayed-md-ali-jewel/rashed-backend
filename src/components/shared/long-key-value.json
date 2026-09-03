@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_long_key_values",
+  "info": {
+    "displayName": "Long Key Value"
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

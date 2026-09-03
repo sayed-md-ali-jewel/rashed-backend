@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "expenses",
+  "info": {
+    "singularName": "expense",
+    "pluralName": "expenses",
+    "displayName": "Expense"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "amount": { "type": "decimal", "required": true },
+    "expenseDate": { "type": "date", "required": true },
+    "category": {
+      "type": "enumeration",
+      "enum": ["rent", "salary", "utility", "equipment", "medicine", "marketing", "other"],
+      "default": "other"
+    },
+    "receipt": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "files"]
+    },
+    "notes": { "type": "text" }
+  }
+}

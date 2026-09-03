@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "schedules",
+  "info": {
+    "singularName": "schedule",
+    "pluralName": "schedules",
+    "displayName": "Consultation Schedule"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "slug": { "type": "uid", "targetField": "title", "required": true },
+    "hospital": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::hospital.hospital",
+      "inversedBy": "schedules"
+    },
+    "startsAt": { "type": "datetime", "required": true },
+    "endsAt": { "type": "datetime", "required": true },
+    "slotDurationMinutes": { "type": "integer", "required": true, "default": 10 },
+    "fee": { "type": "decimal", "required": true, "default": 0 },
+    "maxAppointments": { "type": "integer" },
+    "breakStart": { "type": "datetime" },
+    "breakEnd": { "type": "datetime" },
+    "scheduleStatus": {
+      "type": "enumeration",
+      "enum": ["scheduled", "cancelled", "completed"],
+      "default": "scheduled"
+    },
+    "appointments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::appointment.appointment",
+      "mappedBy": "schedule"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.meta"
+    }
+  }
+}

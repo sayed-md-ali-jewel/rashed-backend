@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hospitals",
+  "info": {
+    "singularName": "hospital",
+    "pluralName": "hospitals",
+    "displayName": "Hospital / Clinic"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "address": { "type": "text", "required": true },
+    "phone": { "type": "string" },
+    "googleMapsUrl": { "type": "string" },
+    "embeddedMapUrl": { "type": "text" },
+    "mapUrl": { "type": "text" },
+    "latitude": { "type": "decimal" },
+    "longitude": { "type": "decimal" },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imageUrl": { "type": "string" },
+    "consultationFee": { "type": "decimal" },
+    "active": { "type": "boolean", "default": true },
+    "schedules": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::schedule.schedule",
+      "mappedBy": "hospital"
+    }
+  }
+}

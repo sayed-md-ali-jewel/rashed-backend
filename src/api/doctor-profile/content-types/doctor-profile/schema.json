@@ -1,0 +1,51 @@
+{
+  "kind": "singleType",
+  "collectionName": "doctor_profiles",
+  "info": {
+    "singularName": "doctor-profile",
+    "pluralName": "doctor-profiles",
+    "displayName": "Doctor Profile"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroSection": {
+      "type": "component",
+      "component": "doctor.hero-section",
+      "repeatable": false
+    },
+    "aboutSection": {
+      "type": "component",
+      "component": "doctor.about-section",
+      "repeatable": false
+    },
+    "servicesSection": {
+      "type": "component",
+      "component": "doctor.services-section",
+      "repeatable": false
+    },
+    "profileDetailsSection": {
+      "type": "component",
+      "component": "doctor.profile-details-section",
+      "repeatable": false
+    },
+    "contactSection": {
+      "type": "component",
+      "component": "doctor.contact-section",
+      "repeatable": false
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.meta",
+      "repeatable": false
+    },
+    "test": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

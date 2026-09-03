@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_key_values",
+  "info": {
+    "displayName": "Key Value"
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

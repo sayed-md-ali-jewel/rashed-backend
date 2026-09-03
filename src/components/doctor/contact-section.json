@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_doctor_contact_sections",
+  "info": {
+    "displayName": "Contact"
+  },
+  "attributes": {
+    "phone": { "type": "string" },
+    "whatsapp": { "type": "string" },
+    "address": { "type": "text" },
+    "contactInformation": { "type": "text" },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    }
+  }
+}

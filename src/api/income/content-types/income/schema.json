@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "incomes",
+  "info": {
+    "singularName": "income",
+    "pluralName": "incomes",
+    "displayName": "Income"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "amount": { "type": "decimal", "required": true },
+    "incomeDate": { "type": "date", "required": true },
+    "category": {
+      "type": "enumeration",
+      "enum": ["consultation", "procedure", "other"],
+      "default": "consultation"
+    },
+    "appointment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::appointment.appointment"
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": ["cash", "card", "bkash", "nagad", "bank", "other"],
+      "default": "cash"
+    }
+  }
+}

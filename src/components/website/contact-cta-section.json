@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_website_contact_cta_sections",
+  "info": {
+    "displayName": "Contact CTA"
+  },
+  "attributes": {
+    "contactBadge": { "type": "string" },
+    "contactTitle": { "type": "string" }
+  }
+}

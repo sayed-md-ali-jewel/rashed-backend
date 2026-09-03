@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_website_brand_sections",
+  "info": {
+    "displayName": "Brand"
+  },
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "required": true
+    },
+    "footerDescription": {
+      "type": "text"
+    }
+  }
+}

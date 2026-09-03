@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patients",
+  "info": {
+    "singularName": "patient",
+    "pluralName": "patients",
+    "displayName": "Patient"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "fullName": { "type": "string", "required": true },
+    "mobileNumber": { "type": "string", "required": true, "unique": true },
+    "email": { "type": "email" },
+    "dateOfBirth": { "type": "date" },
+    "age": { "type": "integer" },
+    "gender": { "type": "string" },
+    "address": { "type": "string" },
+    "emergencyContact": { "type": "string" },
+    "appointments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::appointment.appointment",
+      "mappedBy": "patient"
+    },
+    "medicalHistory": { "type": "text" },
+    "jwtSubject": { "type": "string", "private": true }
+  }
+}

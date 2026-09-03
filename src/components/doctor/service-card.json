@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_doctor_service_cards",
+  "info": {
+    "displayName": "Service Card"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.title-value"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "seo_settings",
+  "info": {
+    "singularName": "seo-setting",
+    "pluralName": "seo-settings",
+    "displayName": "SEO Setting"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "pageKey": { "type": "string", "required": true, "unique": true },
+    "slug": { "type": "uid", "required": true },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.meta"
+    },
+    "imageAltText": { "type": "string" }
+  }
+}

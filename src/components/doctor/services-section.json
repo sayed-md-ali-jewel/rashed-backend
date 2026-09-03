@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_doctor_services_sections",
+  "info": {
+    "displayName": "Services"
+  },
+  "attributes": {
+    "medicalServices": {
+      "type": "component",
+      "repeatable": true,
+      "component": "doctor.service-card"
+    },
+    "consultationFee": { "type": "decimal" },
+    "services": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    }
+  }
+}

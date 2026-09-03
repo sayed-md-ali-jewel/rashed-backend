@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_doctor_expertise_cards",
+  "info": {
+    "displayName": "Expertise Card"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.title-value"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_long_title_values",
+  "info": {
+    "displayName": "Long Title Value"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

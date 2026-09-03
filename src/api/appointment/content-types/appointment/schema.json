@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "appointments",
+  "info": {
+    "singularName": "appointment",
+    "pluralName": "appointments",
+    "displayName": "Appointment"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "patient": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::patient.patient",
+      "inversedBy": "appointments"
+    },
+    "patientName": { "type": "string", "required": true },
+    "mobileNumber": { "type": "string", "required": true },
+    "address": { "type": "string" },
+    "schedule": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::schedule.schedule",
+      "inversedBy": "appointments"
+    },
+    "slotStart": { "type": "datetime", "required": true },
+    "slotEnd": { "type": "datetime" },
+    "queueNumber": { "type": "integer", "required": true },
+    "reason": { "type": "text" },
+    "appointmentStatus": {
+      "type": "enumeration",
+      "enum": ["pending", "approved", "cancelled"],
+      "default": "pending",
+      "required": true
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": ["pending", "paid", "failed", "refunded", "unpaid", "partial"],
+      "default": "pending",
+      "required": true
+    },
+    "paymentAmount": { "type": "decimal", "default": 0 },
+    "notes": { "type": "text" },
+    "email": { "type": "email" },
+    "dateOfBirth": { "type": "date" },
+    "age": { "type": "integer" },
+    "gender": { "type": "string" },
+    "emergencyContact": { "type": "string" },
+    "hospitalName": { "type": "string" },
+    "patientMessage": { "type": "text" },
+    "fee": { "type": "decimal", "default": 0 }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "collectionName": "components_seo_meta",
+  "info": {
+    "displayName": "SEO Meta"
+  },
+  "attributes": {
+    "seoTitle": {
+      "type": "string",
+      "maxLength": 65,
+      "required": true
+    },
+    "metaDescription": {
+      "type": "text",
+      "maxLength": 160,
+      "required": true
+    },
+    "focusKeyword": {
+      "type": "string"
+    },
+    "canonicalUrl": {
+      "type": "string"
+    },
+    "ogTitle": {
+      "type": "string"
+    },
+    "ogDescription": {
+      "type": "text"
+    },
+    "ogImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "twitterTitle": {
+      "type": "string"
+    },
+    "twitterDescription": {
+      "type": "text"
+    },
+    "twitterImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "jsonLdSchema": {
+      "type": "json"
+    },
+    "breadcrumbs": {
+      "type": "json"
+    },
+    "indexing": {
+      "type": "enumeration",
+      "enum": ["index", "noindex"],
+      "default": "index"
+    },
+    "seoScore": {
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    },
+    "readabilityScore": {
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    },
+    "socialPreviewNotes": {
+      "type": "text"
+    }
+  }
+}

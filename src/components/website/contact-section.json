@@ -1,0 +1,11 @@
+{
+  "collectionName": "components_website_contact_sections",
+  "info": {
+    "displayName": "Contact"
+  },
+  "attributes": {
+    "contactPhone": { "type": "string" },
+    "contactEmail": { "type": "email" },
+    "contactAddress": { "type": "text" }
+  }
+}

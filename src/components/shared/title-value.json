@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_title_values",
+  "info": {
+    "displayName": "Title Value"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

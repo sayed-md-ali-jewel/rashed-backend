@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_website_profile_sections",
+  "info": {
+    "displayName": "Services & Profile"
+  },
+  "attributes": {
+    "servicesTitle": { "type": "string" },
+    "servicesDescription": { "type": "text" },
+    "profileBadge": { "type": "string" },
+    "profileTitle": { "type": "string" }
+  }
+}

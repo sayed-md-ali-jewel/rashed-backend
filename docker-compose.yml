@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: doctor_portfolio
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - doctor_postgres:/var/lib/postgresql/data
+
+  strapi:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run develop"
+    env_file:
+      - .env
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+
+volumes:
+  doctor_postgres:

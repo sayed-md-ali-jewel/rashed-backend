@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_website_schedules_sections",
+  "info": {
+    "displayName": "Schedules"
+  },
+  "attributes": {
+    "scheduleBadge": { "type": "string" },
+    "scheduleTitle": { "type": "string" },
+    "scheduleDescription": { "type": "text" },
+    "scheduleEmptyTitle": { "type": "string" },
+    "scheduleEmptyDescription": { "type": "text" },
+    "scheduleBookButton": { "type": "string" },
+    "scheduleDetailBadge": { "type": "string" },
+    "shareScheduleLabel": { "type": "string" }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_website_hero_sections",
+  "info": {
+    "displayName": "Hero"
+  },
+  "attributes": {
+    "heroPrimaryCta": { "type": "string" },
+    "heroSecondaryCta": { "type": "string" }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_website_appointment_sections",
+  "info": {
+    "displayName": "Appointment"
+  },
+  "attributes": {
+    "appointmentsBadge": { "type": "string" },
+    "appointmentsTitle": { "type": "string" },
+    "appointmentsDescription": { "type": "text" },
+    "appointmentFormBadge": { "type": "string" },
+    "appointmentFormTitle": { "type": "string" },
+    "appointmentFormDescription": { "type": "text" },
+    "patientNameLabel": { "type": "string" },
+    "patientNamePlaceholder": { "type": "string" },
+    "patientMobileLabel": { "type": "string" },
+    "patientMobilePlaceholder": { "type": "string" },
+    "patientSlotLabel": { "type": "string" },
+    "patientSlotPlaceholder": { "type": "string" },
+    "appointmentSubmitButton": { "type": "string" },
+    "appointmentValidationMessage": { "type": "text" },
+    "appointmentSuccessMessage": { "type": "text" },
+    "appointmentApprovedMessage": { "type": "text" },
+    "appointmentCancelledMessage": { "type": "text" }
+  }
+}

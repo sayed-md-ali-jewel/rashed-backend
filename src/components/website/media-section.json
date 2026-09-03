@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_website_media_sections",
+  "info": {
+    "displayName": "Testimonials & Gallery"
+  },
+  "attributes": {
+    "testimonialsBadge": { "type": "string" },
+    "testimonialsTitle": { "type": "string" },
+    "galleryBadge": { "type": "string" },
+    "galleryTitle": { "type": "string" },
+    "galleryDescription": { "type": "text" }
+  }
+}

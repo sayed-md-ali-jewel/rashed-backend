@@ -1,0 +1,78 @@
+{
+  "kind": "singleType",
+  "collectionName": "website_settings",
+  "info": {
+    "singularName": "website-setting",
+    "pluralName": "website-settings",
+    "displayName": "Website Setting"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "brandSection": {
+      "type": "component",
+      "component": "website.brand-section",
+      "repeatable": false
+    },
+    "socialLinksSection": {
+      "type": "component",
+      "component": "website.social-links-section",
+      "repeatable": false
+    },
+    "contactSection": {
+      "type": "component",
+      "component": "website.contact-section",
+      "repeatable": false
+    },
+    "heroSection": {
+      "type": "component",
+      "component": "website.hero-section",
+      "repeatable": false
+    },
+    "schedulesSection": {
+      "type": "component",
+      "component": "website.schedules-section",
+      "repeatable": false
+    },
+    "appointmentSection": {
+      "type": "component",
+      "component": "website.appointment-section",
+      "repeatable": false
+    },
+    "profileSection": {
+      "type": "component",
+      "component": "website.profile-section",
+      "repeatable": false
+    },
+    "mediaSection": {
+      "type": "component",
+      "component": "website.media-section",
+      "repeatable": false
+    },
+    "contactCtaSection": {
+      "type": "component",
+      "component": "website.contact-cta-section",
+      "repeatable": false
+    },
+    "defaultSeo": {
+      "type": "component",
+      "component": "seo.meta",
+      "repeatable": false
+    },
+    "googleMapsApiKey": {
+      "type": "password",
+      "private": true
+    },
+    "smsProviderConfig": {
+      "type": "component",
+      "private": true,
+      "component": "shared.long-title-value",
+      "repeatable": true
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

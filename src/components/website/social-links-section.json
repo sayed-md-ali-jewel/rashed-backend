@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_website_social_links_sections",
+  "info": {
+    "displayName": "Social Links"
+  },
+  "attributes": {
+    "facebookUrl": { "type": "string" },
+    "linkedinUrl": { "type": "string" },
+    "xUrl": { "type": "string" },
+    "youtubeUrl": { "type": "string" },
+    "telegramUrl": { "type": "string" }
+  }
+}

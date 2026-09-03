@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "singularName": "payment",
+    "pluralName": "payments",
+    "displayName": "Payment"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "appointment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::appointment.appointment"
+    },
+    "patient": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::patient.patient"
+    },
+    "patientName": { "type": "string" },
+    "hospitalName": { "type": "string" },
+    "consultationFee": { "type": "decimal", "required": true, "default": 0 },
+    "discount": { "type": "decimal", "default": 0 },
+    "totalAmount": { "type": "decimal", "required": true, "default": 0 },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": ["cash", "card", "bkash", "nagad", "bank", "online", "other"],
+      "default": "cash"
+    },
+    "transactionId": { "type": "string" },
+    "paymentDate": { "type": "datetime" },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "paid", "failed", "refunded"],
+      "default": "pending"
+    }
+  }
+}

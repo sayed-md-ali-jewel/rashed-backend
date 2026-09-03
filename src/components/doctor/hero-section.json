@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_doctor_hero_sections",
+  "info": {
+    "displayName": "Doctor Hero"
+  },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "title": { "type": "string", "required": true },
+    "heroBadge": { "type": "string" },
+    "heroIntro": { "type": "text" },
+    "heroCareTitle": { "type": "string" },
+    "heroCareDescription": { "type": "text" },
+    "heroStats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.key-value"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imageUrl": {
+      "type": "string"
+    }
+  }
+}
