@@ -5,9 +5,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "backend/**"
-      - ".github/workflows/deploy-backend.yml"
+    paths-ignore:
+      - "README.md"
+      - ".gitignore"
+      - "docs/**"
 
 concurrency:
   group: deploy-backend-${{ github.ref }}
@@ -18,42 +19,38 @@ jobs:
     name: Build & Deploy Strapi Backend
     runs-on: ubuntu-22.04
 
-    defaults:
-      run:
-        working-directory: backend
-
     env:
       # Strapi Environment
-      HOST: ${{ vars.STRAPI_HOST || '0.0.0.0' }}
-      PORT: ${{ vars.STRAPI_PORT || '1337' }}
-      PUBLIC_URL: ${{ vars.STRAPI_PUBLIC_URL }}
-      FRONTEND_URL: ${{ vars.FRONTEND_URL }}
-      APP_KEYS: ${{ vars.APP_KEYS }}
-      API_TOKEN_SALT: ${{ vars.API_TOKEN_SALT }}
-      ADMIN_JWT_SECRET: ${{ vars.ADMIN_JWT_SECRET }}
-      TRANSFER_TOKEN_SALT: ${{ vars.TRANSFER_TOKEN_SALT }}
-      JWT_SECRET: ${{ vars.JWT_SECRET }}
-      ENCRYPTION_KEY: ${{ vars.ENCRYPTION_KEY }}
+      HOST: ${{ vars.STRAPI_HOST || secrets.STRAPI_HOST || '0.0.0.0' }}
+      PORT: ${{ vars.STRAPI_PORT || secrets.STRAPI_PORT || '1337' }}
+      PUBLIC_URL: ${{ vars.STRAPI_PUBLIC_URL || secrets.STRAPI_PUBLIC_URL }}
+      FRONTEND_URL: ${{ vars.FRONTEND_URL || secrets.FRONTEND_URL }}
+      APP_KEYS: ${{ secrets.APP_KEYS || vars.APP_KEYS }}
+      API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT || vars.API_TOKEN_SALT }}
+      ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET || vars.ADMIN_JWT_SECRET }}
+      TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT || vars.TRANSFER_TOKEN_SALT }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET || vars.JWT_SECRET }}
+      ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY || vars.ENCRYPTION_KEY }}
 
       # Database Configuration
-      DATABASE_HOST: ${{ vars.DATABASE_HOST }}
-      DATABASE_PORT: ${{ vars.DATABASE_PORT || '5432' }}
-      DATABASE_NAME: ${{ vars.DATABASE_NAME || 'doctor_portfolio' }}
-      DATABASE_USERNAME: ${{ vars.DATABASE_USERNAME }}
-      DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
-      DATABASE_SSL: ${{ vars.DATABASE_SSL || 'false' }}
-      DATABASE_SSL_REJECT_UNAUTHORIZED: ${{ vars.DATABASE_SSL_REJECT_UNAUTHORIZED || 'true' }}
-      DATABASE_POOL_MIN: ${{ vars.DATABASE_POOL_MIN || '2' }}
-      DATABASE_POOL_MAX: ${{ vars.DATABASE_POOL_MAX || '10' }}
-      DATABASE_SCHEMA: ${{ vars.DATABASE_SCHEMA || 'public' }}
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST || vars.DATABASE_HOST }}
+      DATABASE_PORT: ${{ vars.DATABASE_PORT || secrets.DATABASE_PORT || '5432' }}
+      DATABASE_NAME: ${{ vars.DATABASE_NAME || secrets.DATABASE_NAME || 'doctor_portfolio' }}
+      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME || vars.DATABASE_USERNAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD || vars.DATABASE_PASSWORD }}
+      DATABASE_SSL: ${{ vars.DATABASE_SSL || secrets.DATABASE_SSL || 'false' }}
+      DATABASE_SSL_REJECT_UNAUTHORIZED: ${{ vars.DATABASE_SSL_REJECT_UNAUTHORIZED || secrets.DATABASE_SSL_REJECT_UNAUTHORIZED || 'true' }}
+      DATABASE_POOL_MIN: ${{ vars.DATABASE_POOL_MIN || secrets.DATABASE_POOL_MIN || '2' }}
+      DATABASE_POOL_MAX: ${{ vars.DATABASE_POOL_MAX || secrets.DATABASE_POOL_MAX || '10' }}
+      DATABASE_SCHEMA: ${{ vars.DATABASE_SCHEMA || secrets.DATABASE_SCHEMA || 'public' }}
 
       # Webuzo FTP Connection
-      FTP_SERVER: ${{ vars.BACKEND_FTP_SERVER || vars.FTP_SERVER }}
-      FTP_USERNAME: ${{ vars.BACKEND_FTP_USERNAME || vars.FTP_USERNAME }}
-      FTP_PASSWORD: ${{ vars.BACKEND_FTP_PASSWORD || vars.FTP_PASSWORD }}
-      FTP_PROTOCOL: ${{ vars.FTP_PROTOCOL || 'ftp' }}
-      FTP_PORT: ${{ vars.FTP_PORT || '21' }}
-      FTP_SERVER_DIR: ${{ vars.BACKEND_FTP_SERVER_DIR || '/public_html/drrashed.bd/backend/' }}
+      FTP_SERVER: ${{ secrets.BACKEND_FTP_SERVER || vars.BACKEND_FTP_SERVER || secrets.FTP_SERVER || vars.FTP_SERVER }}
+      FTP_USERNAME: ${{ secrets.BACKEND_FTP_USERNAME || vars.BACKEND_FTP_USERNAME || secrets.FTP_USERNAME || vars.FTP_USERNAME }}
+      FTP_PASSWORD: ${{ secrets.BACKEND_FTP_PASSWORD || vars.BACKEND_FTP_PASSWORD || secrets.FTP_PASSWORD || vars.FTP_PASSWORD }}
+      FTP_PROTOCOL: ${{ vars.FTP_PROTOCOL || secrets.FTP_PROTOCOL || 'ftp' }}
+      FTP_PORT: ${{ vars.FTP_PORT || secrets.FTP_PORT || '21' }}
+      FTP_SERVER_DIR: ${{ vars.BACKEND_FTP_SERVER_DIR || secrets.BACKEND_FTP_SERVER_DIR || vars.FTP_SERVER_DIR || secrets.FTP_SERVER_DIR || 'public_html/drrashed.bd/backend/' }}
 
     steps:
       - name: Checkout repository
@@ -64,14 +61,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: backend/package-lock.json
+          cache-dependency-path: package-lock.json
 
-      - name: Validate deploy secrets
+      - name: Validate deploy configuration
         run: |
           missing=0
-          for name in FTP_SERVER FTP_USERNAME FTP_PASSWORD APP_KEYS API_TOKEN_SALT ADMIN_JWT_SECRET TRANSFER_TOKEN_SALT JWT_SECRET ENCRYPTION_KEY DATABASE_HOST DATABASE_USERNAME DATABASE_PASSWORD; do
+          for name in FTP_SERVER FTP_USERNAME FTP_PASSWORD; do
             if [ -z "${!name}" ]; then
-              echo "::error::Missing GitHub secret: $name"
+              echo "::error::Missing GitHub secret/variable: $name"
               missing=1
             fi
           done
@@ -93,18 +90,20 @@ jobs:
           mkdir -p deploy
 
           # Copy compiled output and runtime assets
-          cp -r dist deploy/dist
-          cp -r public deploy/public
-          cp -r config deploy/config
-          cp -r database deploy/database
-          cp -r src deploy/src
+          if [ -d dist ]; then cp -r dist deploy/dist; fi
+          if [ -d public ]; then cp -r public deploy/public; fi
+          if [ -d config ]; then cp -r config deploy/config; fi
+          if [ -d database ]; then cp -r database deploy/database; fi
+          if [ -d src ]; then cp -r src deploy/src; fi
           if [ -f favicon.png ]; then cp favicon.png deploy/favicon.png; fi
 
           # Copy package manifests & entry points
           cp package.json deploy/package.json
           cp package-lock.json deploy/package-lock.json
-          cp server.js deploy/server.js
-          cp server.js deploy/app.js
+          if [ -f server.js ]; then
+            cp server.js deploy/server.js
+            cp server.js deploy/app.js
+          fi
 
           # Install production dependencies only inside deploy folder
           cd deploy
@@ -152,7 +151,7 @@ jobs:
           password: ${{ env.FTP_PASSWORD }}
           protocol: ${{ env.FTP_PROTOCOL }}
           port: ${{ env.FTP_PORT }}
-          local-dir: ./backend/deploy/
+          local-dir: ./deploy/
           server-dir: ${{ env.FTP_SERVER_DIR }}
           exclude: |
             **/.git*
