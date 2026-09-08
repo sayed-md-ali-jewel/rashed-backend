@@ -43,7 +43,6 @@ jobs:
       DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
       DATABASE_SSL: ${{ vars.DATABASE_SSL || 'false' }}
       DATABASE_SSL_REJECT_UNAUTHORIZED: ${{ vars.DATABASE_SSL_REJECT_UNAUTHORIZED || 'true' }}
-      DATABASE_SCHEMA: ${{ vars.DATABASE_SCHEMA || 'public' }}
       DATABASE_POOL_MIN: ${{ vars.DATABASE_POOL_MIN || '2' }}
       DATABASE_POOL_MAX: ${{ vars.DATABASE_POOL_MAX || '10' }}
       DATABASE_SCHEMA: ${{ vars.DATABASE_SCHEMA || 'public' }}
